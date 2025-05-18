@@ -2,7 +2,7 @@
 Mini-shell interactif en C, permettant l'exécution de commandes Unix avec support des redirections, pipes multiples, historique des commandes et commandes internes.
 ---
 
-## ✅ Prérequis
+##  Prérequis
 
 - **Bibliothèque GNU Readline**  
   Nécessaire pour l’historique et les touches fléchées.  
@@ -18,7 +18,7 @@ Mini-shell interactif en C, permettant l'exécution de commandes Unix avec suppo
 
 ---
 
-## ⚙️ Fonctionnalités
+##  Fonctionnalités
 
 ### 🔹 Prompt
 - Affiche le nom de l'utilisateur et le répertoire courant
@@ -47,7 +47,7 @@ Mini-shell interactif en C, permettant l'exécution de commandes Unix avec suppo
 
 ---
 
-## 🛠️ Compilation et exécution
+##  Compilation et exécution
 
 ### 🔹 Pour compiler le projet :
 
@@ -64,7 +64,7 @@ make
 
 ---
 
-## 🧪 Exemples d'utilisation
+##  Exemples d'utilisation
 
 ```bash
 # Lister les fichiers
@@ -88,7 +88,7 @@ sleep 5 &
 
 ---
 
-## 📁 Structure du projet
+##  Structure du projet
 
 ```
 mini_shell/
@@ -104,12 +104,12 @@ mini_shell/
 ---
 
 
-## 👤 Auteur
+## Auteur
 
 **Tarik Aftys**  
 
 
-## 📄 Licence
+## Licence
 
 Ce projet est distribué sous licence MIT.  
 Libre d’utilisation à des fins pédagogiques et personnelles.
