@@ -1,61 +1,115 @@
 # mini_shell
 Mini-shell interactif en C, permettant l'exécution de commandes Unix avec support des redirections, pipes multiples, historique des commandes et commandes internes.
+---
 
-## ✅ Requirements
+## ✅ Prérequis
 
-- **GNU Readline Library**  
-  Required for command history and line editing.  
-  To install on Ubuntu/Debian:
+- **Bibliothèque GNU Readline**  
+  Nécessaire pour l’historique et les touches fléchées.  
+  Installer sur Ubuntu/Debian avec :
 
   ```bash
   sudo apt update
   sudo apt install libreadline-dev
-# GCC Compiler
-To compile the C sources.
-# Features
-🔹 Prompt
-Displays the current user and working directory with color formatting
+  ```
 
-🔹 Command Execution
-External commands via execvp()
+- **Compilateur GCC**  
+  Pour compiler les fichiers sources C.
 
-Built-in commands handled internally
+---
 
-🔹 Parsing & Operators
-Pipelines: |
+## ⚙️ Fonctionnalités
 
-Input redirection: <
+### 🔹 Prompt
+- Affiche le nom de l'utilisateur et le répertoire courant
+- Couleurs pour une meilleure lisibilité
 
-Output redirection: >
+### 🔹 Exécution de commandes
+- Exécution de commandes externes via `execvp()`
+- Lancement de processus en arrière-plan avec `&`
 
-Background execution: &
+### 🔹 Analyse et opérateurs
+- Tubes (pipes) avec `|`
+- Redirection de l’entrée : `<`
+- Redirection de la sortie : `>`
+- Exécution en arrière-plan : `&`
 
-🔹 Built-in Commands
-| Command   | Description                           |
-| --------- | ------------------------------------- |
-| `cd`      | Change current directory              |
-| `pwd`     | Print current working directory       |
-| `clear`   | Clear the terminal screen             |
-| `exit`    | Exit the shell                        |
-| `help`    | (optional) Display help (to add)      |
-| `history` | View previous commands (via readline) |
-# Build and Run
-🔹 Compile with make
+### 🔹 Commandes internes disponibles
+
+| Commande     | Description                                   |
+|--------------|-----------------------------------------------|
+| `cd`         | Changer de répertoire                         |
+| `pwd`        | Afficher le répertoire courant                |
+| `clear`      | Effacer le terminal                           |
+| `exit`       | Quitter le shell                              |
+| `help`       | Afficher les commandes internes disponibles   |
+| `history`    | Afficher l’historique (via GNU Readline)      |
+
+---
+
+## 🛠️ Compilation et exécution
+
+### 🔹 Pour compiler le projet :
+
+```bash
 make
-🔹 Run the shell
+```
+
+### 🔹 Pour lancer le shell :
+
+```bash
 ./mini_shell
-#  Usage Examples
-# List files
+```
+
+
+---
+
+## 🧪 Exemples d'utilisation
+
+```bash
+# Lister les fichiers
 ls -l
 
-# Pipeline example
+# Utiliser un pipe
 ls | grep .c
 
-# Output redirection
-echo Hello > hello.txt
+# Rediriger la sortie vers un fichier
+echo Bonjour > fichier.txt
 
-# Input redirection
-cat < hello.txt
+# Lire depuis un fichier
+cat < fichier.txt
 
-# Background process
+# Lancer un processus en arrière-plan
 sleep 5 &
+```
+
+✔ Utilisez les flèches ↑ ↓ pour parcourir l’historique  
+✔ Combinez les redirections et les pipes librement (`cat fichier | grep txt > résultat.txt`)
+
+---
+
+## 📁 Structure du projet
+
+```
+mini_shell/
+├── main.c         # Boucle principale du shell et gestion des commandes internes
+├── parser.c       # Analyse et découpage des lignes de commande
+├── executor.c     # Exécution, redirection, gestion des pipes
+├── shell.h        # Fichier d’en-tête commun
+├── Makefile       # Script de compilation
+├── .gitignore     # Fichiers à ignorer (binaire, temporaires, etc.)
+└── README.md      # Documentation du projet
+```
+
+---
+
+
+## 👤 Auteur
+
+**Tarik Aftys**  
+
+
+## 📄 Licence
+
+Ce projet est distribué sous licence MIT.  
+Libre d’utilisation à des fins pédagogiques et personnelles.
