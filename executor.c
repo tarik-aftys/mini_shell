@@ -1,15 +1,13 @@
-// executor.c
-
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>     // Pour strcmp, strlen
-#include <unistd.h>     // Pour fork, execvp, chdir, dup2
+#include <string.h>     
+#include <unistd.h>   
 #include <sys/types.h>
-#include <sys/wait.h>   // Pour waitpid
-#include <fcntl.h>      // Pour open
-#include "shell.h"      // Prototypes et constantes
-#include <pwd.h>   // pour getpwuid
-#include <limits.h> // pour PATH_MAX
+#include <sys/wait.h>   
+#include <fcntl.h>     
+#include "shell.h"     
+#include <pwd.h>   
+#include <limits.h> 
 #include <unistd.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -31,9 +29,9 @@ char *get_prompt() {
 // Lit une ligne depuis l'entrée standard
 
 char *read_line() {
-    char *line = readline("\0"); // Prompt nul car on gère le prompt ailleurs
+    char *line = readline("\0");
     if (line && *line) {
-        add_history(line); // Ajoute à l'historique si non vide
+        add_history(line); 
     }
     return line;
 }
@@ -48,7 +46,7 @@ int contains_pipe(char **args) {
 }
 
 void execute_pipeline(char **args) {
-    char *commands[16][MAX_ARGS];  // max 16 sous-commandes, adapt si besoin
+    char *commands[16][MAX_ARGS];  
     int cmd_count = 0;
     int arg_index = 0;
     int pipe_index = 0;
@@ -124,15 +122,11 @@ void execute_command(char **args, int background) {
     }
 
     if (pid == 0) {
-        // Processus enfant
-
         char *input_file = NULL;
         char *output_file = NULL;
 
-        // Vérifie si redirection présente dans les arguments
         check_redirection(args, &input_file, &output_file);
 
-        // Redirection d'entrée si nécessaire
         if (input_file) {
             int fd_in = open(input_file, O_RDONLY);
             if (fd_in < 0) {
@@ -143,7 +137,6 @@ void execute_command(char **args, int background) {
             close(fd_in);
         }
 
-        // Redirection de sortie si nécessaire
         if (output_file) {
             int fd_out = open(output_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
             if (fd_out < 0) {
@@ -154,21 +147,19 @@ void execute_command(char **args, int background) {
             close(fd_out);
         }
 
-        // Exécute la commande
         execvp(args[0], args);
         perror("exec failed");
         exit(EXIT_FAILURE);
     } else {
-        // Processus parent
         if (!background) {
-            waitpid(pid, NULL, 0);  // Attente du processus fils
+            waitpid(pid, NULL, 0);  
         } else {
             printf("[background pid: %d]\n", pid);
         }
     }
 }
 
-// Analyse les redirections dans les arguments et met à jour les fichiers
+
 int check_redirection(char **args, char **input_file, char **output_file) {
     int i = 0;
     *input_file = NULL;
@@ -177,11 +168,11 @@ int check_redirection(char **args, char **input_file, char **output_file) {
     while (args[i] != NULL) {
         if (strcmp(args[i], "<") == 0 && args[i + 1]) {
             *input_file = args[i + 1];
-            args[i] = NULL;  // coupe la chaîne ici
+            args[i] = NULL; 
             i++;
         } else if (strcmp(args[i], ">") == 0 && args[i + 1]) {
             *output_file = args[i + 1];
-            args[i] = NULL;  // coupe la chaîne ici
+            args[i] = NULL; 
             i++;
         }
         i++;
