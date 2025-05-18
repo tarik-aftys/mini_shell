@@ -1,52 +1,15 @@
-# Prerequisites
-*.d
-
-# Object files
+# Fichiers objets
 *.o
-*.ko
-*.obj
-*.elf
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# Exécutable compilé
+mini_shell
+a.out
 
-# Precompiled Headers
-*.gch
-*.pch
+# Fichiers temporaires de l'éditeur
+*~
+*.swp
+*.swo
+*.tmp
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# Fichier temporaire VS Code
+tempCodeRunnerFile.c
