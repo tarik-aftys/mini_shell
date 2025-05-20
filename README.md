@@ -102,14 +102,3 @@ mini_shell/
 ```
 
 ---
-
-
-## Auteur
-
-**Tarik Aftys**  
-
-
-## Licence
-
-Ce projet est distribué sous licence MIT.  
-Libre d’utilisation à des fins pédagogiques et personnelles.
