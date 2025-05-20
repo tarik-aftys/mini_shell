@@ -5,38 +5,29 @@
 #include "shell.h"
 #include <readline/readline.h>
 #include <readline/history.h>
-
-
 int main() {
     char *line;
     char *args[MAX_ARGS];
     int background;
-
     while (1) {
         line = readline(get_prompt());
         if (line && *line) {
             add_history(line);
         }
-
         if (line == NULL) {
             printf("\n");
             break;
         }
-
         if (strlen(line) == 0) {
             free(line);
             continue;
         }
-
         parse_line(line, args, &background);
-
-        // Commande interne : exit
         if (args[0] && strcmp(args[0], "exit") == 0) {
             free(line);
             break;
         }
-
-        // Commande interne : cd
+        // cd
         if (args[0] && strcmp(args[0], "cd") == 0) {
             if (args[1] == NULL) {
                 fprintf(stderr, "cd: missing argument\n");
@@ -46,8 +37,7 @@ int main() {
             free(line);
             continue;
         }
-
-        // Commande interne : pwd
+        //pwd
         if (args[0] && strcmp(args[0], "pwd") == 0) {
             char cwd[1024];
             if (getcwd(cwd, sizeof(cwd)) != NULL) {
@@ -59,14 +49,18 @@ int main() {
             continue;
         }
 
-        // Commande interne : clear
+
+        
+        // clear
         if (args[0] && strcmp(args[0], "clear") == 0) {
-            printf("\033[H\033[J"); // Séquence ANSI pour effacer l'écran
+            printf("\033[H\033[J"); 
             free(line);
             continue;
         }
 
-        // Si commande contient un pipe
+        //pipe
+
+
         if (contains_pipe(args)) {
             execute_pipeline(args);
         } else {
